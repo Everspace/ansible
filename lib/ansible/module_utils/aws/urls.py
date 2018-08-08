@@ -113,6 +113,9 @@ def signed_request(
     :returns: HTTPResponse
     """
 
+    if not module:
+        raise AttributeError("module was undefined!")
+
     if not HAS_BOTO3:
         module.fail_json("A sigv4 signed_request requires boto3")
 
