@@ -69,6 +69,10 @@ def get_aws_credentials_object(module):
         module.fail_json("get_aws_credentials_object requires boto3")
 
     dummy, dummy, boto_params = get_aws_connection_info(module, boto3=True)
+
+    # Remove verify because it's not needed
+    boto_params.pop('verify', None)
+
     s = session.Session(**boto_params)
 
     return s.get_credentials()
