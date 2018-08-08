@@ -162,7 +162,9 @@ def signed_request(
     # Derived data
 
     body_hash = hexdigest(body)
-    signed_headers = ";".join(sorted(headers.keys()))
+    signed_headers = ";".join([
+        key.lower().strip() for key in sorted(headers.keys())
+    ])
 
     # Setup Cannonical request to generate auth token
 
